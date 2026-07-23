@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comé Saludable sin Perder Tiempo — Guía práctica de alimentación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-dark:#26402F;
+    --green:#3E5B41;
+    --green-sage:#8CA888;
+    --green-soft:#E4EBDF;
+    --cream:#F8F4EC;
+    --beige:#EDE3D0;
+    --white:#FFFFFF;
+    --gold:#C89B3C;
+    --text:#26402F;
+    --text-muted:#5B6B5E;
+    --shadow:0 20px 50px -20px rgba(38,64,47,0.25);
+    --radius:22px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope',sans-serif;
+    color:var(--text);
+    background:var(--cream);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{font-family:'Fraunces',serif;}
+  img{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--green);font-weight:700;
+  }
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* NAV */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(248,244,236,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(38,64,47,0.08);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1180px;margin:0 auto;}
+  .logo{font-family:'Fraunces',serif;font-weight:600;font-size:20px;color:var(--green-dark);display:flex;align-items:center;gap:10px;}
+  .logo .dot{width:9px;height:9px;border-radius:50%;background:var(--gold);}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:14px 28px;border-radius:999px;font-weight:700;font-size:15px;
+    cursor:pointer;border:none;transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    position:relative;overflow:hidden;
+  }
+  .btn-primary{background:var(--green-dark);color:var(--white);box-shadow:0 10px 30px -10px rgba(38,64,47,0.55);}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 34px -10px rgba(38,64,47,0.6);background:#1d3225;}
+  .btn-gold{background:var(--gold);color:#2a1f06;box-shadow:0 10px 30px -10px rgba(200,155,60,0.6);}
+  .btn-gold:hover{transform:translateY(-3px);box-shadow:0 16px 36px -10px rgba(200,155,60,0.7);}
+  .btn-nav{padding:11px 22px;font-size:14px;}
+  .btn::after{content:"";position:absolute;inset:0;background:rgba(255,255,255,0.18);transform:scaleX(0);transform-origin:left;transition:transform .35s ease;}
+  .btn:hover::after{transform:scaleX(1);}
+
+  /* HERO */
+  .hero{position:relative;padding:70px 0 60px;overflow:hidden;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;}
+  .hero h1{font-size:56px;line-height:1.06;font-weight:600;color:var(--green-dark);letter-spacing:-.01em;margin:18px 0 22px;}
+  .hero h1 em{font-style:normal;color:var(--gold);}
+  .hero p.lead{font-size:19px;line-height:1.6;color:var(--text-muted);max-width:480px;margin-bottom:34px;}
+  .hero-cta-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+  .hero-note{font-size:13px;color:var(--text-muted);display:flex;align-items:center;gap:8px;}
+  .hero-visual{position:relative;display:flex;align-items:center;justify-content:center;}
+  .plate-wheel{width:100%;max-width:420px;aspect-ratio:1;position:relative;}
+  .plate-wheel svg{width:100%;height:100%;animation:spin-slow 60s linear infinite;}
+  @keyframes spin-slow{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+  .plate-center{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    flex-direction:column;text-align:center;pointer-events:none;
+  }
+  .plate-center img{width:58%;aspect-ratio:1;border-radius:50%;object-fit:cover;box-shadow:0 12px 30px -10px rgba(38,64,47,0.4);border:6px solid var(--cream);}
+  .hero-badge{
+    position:absolute;bottom:-6px;left:-6px;background:var(--white);border-radius:18px;padding:14px 18px;
+    box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;max-width:230px;
+  }
+  .hero-badge .num{font-family:'Fraunces',serif;font-size:26px;color:var(--green-dark);font-weight:600;}
+  .hero-badge .lbl{font-size:12px;color:var(--text-muted);line-height:1.3;}
+
+  /* PROBLEM SECTION */
+  .section{padding:96px 0;}
+  .section-cream{background:var(--cream);}
+  .section-beige{background:var(--beige);}
+  .section-dark{background:var(--green-dark);color:var(--white);}
+  .section-head{max-width:640px;margin:0 auto 52px;text-align:center;}
+  .section-head h2{font-size:38px;font-weight:600;color:var(--green-dark);margin-top:14px;line-height:1.2;}
+  .section-dark .section-head h2{color:var(--white);}
+  .section-head p{color:var(--text-muted);font-size:17px;margin-top:14px;}
+
+  .problem-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:44px;}
+  .problem-card{
+    background:var(--white);border-radius:18px;padding:26px 20px;text-align:center;
+    box-shadow:0 12px 30px -18px rgba(38,64,47,0.25);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .problem-card:hover{transform:translateY(-6px);box-shadow:0 20px 36px -18px rgba(38,64,47,0.35);}
+  .problem-card .ic{font-size:26px;margin-bottom:14px;}
+  .problem-card p{font-size:14.5px;color:var(--text);line-height:1.4;font-weight:600;}
+  .closer{text-align:center;font-family:'Fraunces',serif;font-size:26px;color:var(--green-dark);font-weight:500;max-width:600px;margin:0 auto;}
+  .closer strong{color:var(--gold);}
+
+  /* PRODUCT PRESENTATION */
+  .product-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:64px;align-items:center;}
+  .book-mock{position:relative;perspective:1400px;display:flex;justify-content:center;}
+  .book{
+    width:280px;height:380px;position:relative;transform-style:preserve-3d;transform:rotateY(-18deg) rotateX(2deg);
+    transition:transform .5s ease;
+  }
+  .book-mock:hover .book{transform:rotateY(-8deg) rotateX(1deg);}
+  .book-cover{
+    position:absolute;inset:0;border-radius:6px 10px 10px 6px;
+    background:linear-gradient(155deg,#3E5B41 0%, #26402F 65%, #1c3122 100%);
+    box-shadow:24px 30px 60px -20px rgba(38,64,47,0.55);
+    display:flex;flex-direction:column;justify-content:space-between;padding:34px 28px;color:var(--white);
+  }
+  .book-cover .top{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--green-sage);font-weight:700;}
+  .book-cover h3{font-family:'Fraunces',serif;font-size:27px;line-height:1.18;font-weight:600;margin:14px 0;}
+  .book-cover .ring{width:52px;height:52px;border-radius:50%;border:2.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:20px;}
+  .book-pages{position:absolute;top:6px;bottom:6px;right:-10px;width:16px;background:repeating-linear-gradient(#fff,#efe9db 2px,#fff 3px);border-radius:0 4px 4px 0;transform:translateZ(-10px) rotateY(90deg) translateX(8px);box-shadow:2px 0 8px rgba(0,0,0,0.15);}
+  .product-text .eyebrow{margin-bottom:14px;}
+  .product-text h2{font-size:36px;font-weight:600;color:var(--green-dark);line-height:1.2;margin-bottom:18px;}
+  .product-text p.desc{font-size:17px;color:var(--text-muted);line-height:1.65;margin-bottom:36px;max-width:520px;}
+
+  .include-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .include-item{
+    display:flex;align-items:flex-start;gap:12px;background:var(--white);border-radius:14px;padding:16px 16px;
+    box-shadow:0 10px 24px -18px rgba(38,64,47,0.3);
+  }
+  .include-item .check{
+    flex:none;width:26px;height:26px;border-radius:50%;background:var(--green-soft);color:var(--green-dark);
+    display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;
+  }
+  .include-item span.txt{font-size:14.5px;font-weight:600;color:var(--text);line-height:1.35;}
+
+  /* BENEFITS */
+  .benefits-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;}
+  .benefit{text-align:center;padding:10px;}
+  .benefit .ic{
+    width:64px;height:64px;border-radius:50%;background:var(--green-soft);margin:0 auto 18px;
+    display:flex;align-items:center;justify-content:center;font-size:26px;
+  }
+  .benefit p{font-size:15px;font-weight:700;color:var(--green-dark);line-height:1.4;}
+
+  /* TESTIMONIALS */
+  .testi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .testi-card{background:var(--white);border-radius:18px;padding:26px 22px;box-shadow:0 14px 30px -20px rgba(38,64,47,0.3);}
+  .testi-top{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+  .testi-top img{width:48px;height:48px;border-radius:50%;object-fit:cover;}
+  .testi-name{font-weight:800;font-size:14.5px;color:var(--green-dark);}
+  .testi-role{font-size:12px;color:var(--text-muted);}
+  .stars{color:var(--gold);font-size:13px;margin-bottom:10px;letter-spacing:2px;}
+  .testi-card p.quote{font-size:14.5px;line-height:1.55;color:var(--text);}
+
+  /* FAQ */
+  .faq{max-width:760px;margin:0 auto;}
+  .faq-item{border-bottom:1px solid rgba(38,64,47,0.15);padding:22px 0;cursor:pointer;}
+  .faq-q{display:flex;justify-content:space-between;align-items:center;font-family:'Fraunces',serif;font-size:19px;font-weight:500;color:var(--green-dark);}
+  .faq-q .plus{font-size:22px;font-weight:400;transition:transform .3s ease;color:var(--gold);}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease, padding .35s ease;}
+  .faq-item.open .faq-a{max-height:200px;padding-top:12px;}
+  .faq-a p{font-size:15px;color:var(--text-muted);line-height:1.6;max-width:640px;}
+
+  /* OFFER */
+  .offer-box{
+    max-width:640px;margin:0 auto;background:var(--white);border-radius:28px;padding:52px 44px;text-align:center;
+    box-shadow:0 30px 60px -25px rgba(0,0,0,0.5);position:relative;overflow:hidden;
+  }
+  .offer-box::before{content:"";position:absolute;top:-60px;right:-60px;width:180px;height:180px;background:var(--green-soft);border-radius:50%;opacity:.5;}
+  .offer-tag{display:inline-block;background:var(--gold);color:#2a1f06;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:7px 16px;border-radius:999px;margin-bottom:22px;}
+  .price-row{display:flex;align-items:baseline;justify-content:center;gap:16px;margin-bottom:6px;position:relative;z-index:1;}
+  .price-old{font-size:22px;color:var(--text-muted);text-decoration:line-through;}
+  .price-new{font-family:'Fraunces',serif;font-size:56px;font-weight:700;color:var(--green-dark);}
+  .price-sub{font-size:14px;color:var(--text-muted);margin-bottom:28px;}
+  .urgency{font-size:14px;color:#a1471f;font-weight:700;margin-bottom:28px;display:flex;align-items:center;justify-content:center;gap:8px;}
+  .urgency .blink{width:8px;height:8px;background:#c0432a;border-radius:50%;animation:blink 1.4s infinite;}
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+
+  /* GUARANTEE */
+  .guarantee{max-width:720px;margin:0 auto;display:flex;align-items:center;gap:28px;background:var(--green-soft);border-radius:24px;padding:38px 40px;}
+  .guarantee .shield{flex:none;width:74px;height:74px;border-radius:50%;background:var(--green-dark);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:32px;}
+  .guarantee p{font-size:16px;color:var(--text);line-height:1.55;}
+  .guarantee strong{color:var(--green-dark);}
+
+  /* FOOTER */
+  footer{background:var(--green-dark);color:rgba(255,255,255,0.75);padding:56px 0 28px;}
+  .footer-grid{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;margin-bottom:40px;}
+  .footer-logo{font-family:'Fraunces',serif;color:var(--white);font-size:22px;font-weight:600;margin-bottom:10px;}
+  .footer-links{display:flex;gap:44px;flex-wrap:wrap;}
+  .footer-col h4{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--green-sage);margin-bottom:14px;}
+  .footer-col a{display:block;font-size:14px;margin-bottom:9px;color:rgba(255,255,255,0.75);transition:color .2s;}
+  .footer-col a:hover{color:var(--gold);}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,0.12);padding-top:22px;font-size:13px;text-align:center;color:rgba(255,255,255,0.5);}
+
+  /* sticky mobile cta */
+  .sticky-cta{display:none;}
+
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{order:-1;max-width:320px;margin:0 auto;}
+    .hero h1{font-size:40px;}
+    .problem-grid{grid-template-columns:repeat(2,1fr);}
+    .product-grid{grid-template-columns:1fr;gap:48px;}
+    .book-mock{order:-1;}
+    .include-grid{grid-template-columns:repeat(2,1fr);}
+    .benefits-grid{grid-template-columns:repeat(2,1fr);}
+    .testi-grid{grid-template-columns:repeat(2,1fr);}
+    .footer-grid{flex-direction:column;}
+    .section{padding:66px 0;}
+    .sticky-cta{
+      display:flex;position:fixed;bottom:0;left:0;right:0;z-index:60;background:var(--white);
+      padding:12px 16px;box-shadow:0 -10px 30px rgba(0,0,0,0.12);align-items:center;justify-content:space-between;gap:12px;
+    }
+    .sticky-cta .price{font-family:'Fraunces',serif;font-weight:700;color:var(--green-dark);font-size:18px;}
+    body{padding-bottom:70px;}
+  }
+  @media (max-width:640px){
+    .problem-grid{grid-template-columns:1fr 1fr;}
+    .include-grid{grid-template-columns:1fr;}
+    .benefits-grid{grid-template-columns:1fr 1fr;}
+    .testi-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:32px;}
+    .offer-box{padding:38px 24px;}
+    .price-new{font-size:44px;}
+    .guarantee{flex-direction:column;text-align:center;padding:30px 24px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{transition:none;opacity:1;transform:none;}
+    .plate-wheel svg{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo"><span class="dot"></span>Comé Saludable</div>
+    <a href="#oferta" class="btn btn-primary btn-nav">Quiero mi guía</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Guía digital · Descarga inmediata</span>
+      <h1>Comé saludable <em>aunque no tengas tiempo.</em></h1>
+      <p class="lead">Descubrí un método simple para organizar tus comidas, cocinar menos y alimentarte mejor sin pasar horas en la cocina.</p>
+      <div class="hero-cta-row">
+        <a href="#oferta" class="btn btn-gold">Quiero mi guía ahora</a>
+        <span class="hero-note">⭐ +1.200 personas ya organizan su semana</span>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="plate-wheel">
+        <svg viewBox="0 0 200 200">
+          <g>
+            <path d="M100,100 L100,4 A96,96 0 0,1 183.1,52 Z" fill="#3E5B41"/>
+            <path d="M100,100 L183.1,52 A96,96 0 0,1 183.1,148 Z" fill="#8CA888"/>
+            <path d="M100,100 L183.1,148 A96,96 0 0,1 100,196 Z" fill="#EDE3D0"/>
+            <path d="M100,100 L100,196 A96,96 0 0,1 16.9,148 Z" fill="#C89B3C"/>
+            <path d="M100,100 L16.9,148 A96,96 0 0,1 16.9,52 Z" fill="#EDE3D0"/>
+            <path d="M100,100 L16.9,52 A96,96 0 0,1 100,4 Z" fill="#8CA888"/>
+          </g>
+        </svg>
+        <div class="plate-center">
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=400&q=80" alt="Plato saludable fresco">
+        </div>
+        <div class="hero-badge">
+          <div class="num">7</div>
+          <div class="lbl">días de tu semana, resueltos en un plato</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMAS -->
+<section class="section section-cream">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">¿Te suena familiar?</span>
+      <h2>¿Te pasa esto?</h2>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card reveal"><div class="ic">🤔</div><p>No sabés qué cocinar.</p></div>
+      <div class="problem-card reveal"><div class="ic">🛵</div><p>Terminás pidiendo delivery.</p></div>
+      <div class="problem-card reveal"><div class="ic">🍟</div><p>Comés cualquier cosa por falta de tiempo.</p></div>
+      <div class="problem-card reveal"><div class="ic">📋</div><p>Querés cuidarte pero nunca podés organizarte.</p></div>
+      <div class="problem-card reveal"><div class="ic">💸</div><p>Gastás más dinero del que quisieras en comida.</p></div>
+    </div>
+    <p class="closer reveal">No necesitás más tiempo. Necesitás <strong>un sistema simple.</strong></p>
+  </div>
+</section>
+
+<!-- PRODUCTO -->
+<section class="section section-beige">
+  <div class="wrap product-grid">
+    <div class="book-mock reveal">
+      <div class="book">
+        <div class="book-pages"></div>
+        <div class="book-cover">
+          <div class="top">Guía práctica</div>
+          <h3>Comé Saludable sin Perder Tiempo</h3>
+          <div class="ring">🥗</div>
+        </div>
+      </div>
+    </div>
+    <div class="product-text reveal">
+      <span class="eyebrow">La guía</span>
+      <h2>Un sistema, no una dieta más.</h2>
+      <p class="desc">Comé Saludable sin Perder Tiempo es una guía práctica para organizar tu alimentación semanal de manera sencilla: menos decisiones, menos tiempo en la cocina, mejores resultados.</p>
+      <span class="eyebrow" style="display:block;margin-bottom:16px;">¿Qué incluye?</span>
+      <div class="include-grid">
+        <div class="include-item"><span class="check">✓</span><span class="txt">Método para organizar comidas</span></div>
+        <div class="include-item"><span class="check">✓</span><span class="txt">Menú de 30 días</span></div>
+        <div class="include-item"><span class="check">✓</span><span class="txt">Más de 50 recetas fáciles</span></div>
+        <div class="include-item"><span class="check">✓</span><span class="txt">Lista inteligente de compras</span></div>
+        <div class="include-item"><span class="check">✓</span><span class="txt">Desayunos en 5 minutos</span></div>
+        <div class="include-item"><span class="check">✓</span><span class="txt">Almuerzos rápidos</span></div>
+        <div class="include-item"><span class="check">✓</span><span class="txt">Cenas en menos de 20 minutos</span></div>
+        <div class="include-item"><span class="check">✓</span><span class="txt">Snacks saludables</span></div>
+        <div class="include-item"><span class="check">✓</span><span class="txt">Bonus imprimibles</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section class="section section-dark">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" style="color:var(--green-sage);">Lo que vas a lograr</span>
+      <h2>Más que un ebook: menos carga mental.</h2>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit reveal"><div class="ic">🧠</div><p>Dejás de pensar todos los días qué cocinar.</p></div>
+      <div class="benefit reveal"><div class="ic">⏱️</div><p>Ahorrás horas de cocina cada semana.</p></div>
+      <div class="benefit reveal"><div class="ic">🥦</div><p>Comés más saludable sin complicarte.</p></div>
+      <div class="benefit reveal"><div class="ic">💰</div><p>Reducís gastos innecesarios en comida.</p></div>
+      <div class="benefit reveal"><div class="ic">💡</div><p>Tenés siempre ideas listas para usar.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="section section-cream">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Historias reales</span>
+      <h2>Ya lo probaron. Así les fue.</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-top">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Foto de Vanina">
+          <div><div class="testi-name">Vanina R.</div><div class="testi-role">Mamá de dos, contadora</div></div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="quote">Dejé de improvisar la cena a las 8 de la noche. Ahora sé qué voy a cocinar antes de que empiece la semana.</p>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-top">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Foto de Martín">
+          <div><div class="testi-name">Martín G.</div><div class="testi-role">Emprendedor</div></div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="quote">Trabajo doce horas por día. Con las recetas de 20 minutos, por fin como bien sin sacrificar tiempo.</p>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-top">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Foto de Carla">
+          <div><div class="testi-name">Carla D.</div><div class="testi-role">Diseñadora freelance</div></div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="quote">La lista de compras inteligente me cambió el súper. Gasto menos y no me sobra nada.</p>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-top">
+          <img src="https://randomuser.me/api/portraits/men/76.jpg" alt="Foto de Fernando">
+          <div><div class="testi-name">Fernando P.</div><div class="testi-role">Papá y trabajador remoto</div></div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="quote">No sé cocinar casi nada y aun así me resultó fácil de seguir desde el primer día.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-beige">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Dudas frecuentes</span>
+      <h2>Antes de que preguntes</h2>
+    </div>
+    <div class="faq reveal">
+      <div class="faq-item">
+        <div class="faq-q"><span>¿Necesito saber cocinar?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>No. Las recetas están pensadas para cualquier nivel, con pasos claros y pocos ingredientes.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>¿Las recetas son caras?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Al contrario: están diseñadas con ingredientes accesibles y la lista de compras te ayuda a gastar menos.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>¿Cuánto tiempo lleva?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>La mayoría de las comidas están resueltas en 5 a 20 minutos, ideales para el día a día.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>¿Puedo imprimir la guía?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Sí, incluye bonus imprimibles pensados para pegar en la heladera o llevar al súper.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>¿Funciona para toda la familia?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Sí, las porciones y el menú se adaptan fácilmente a más comensales.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFERTA -->
+<section class="section section-cream" id="oferta">
+  <div class="wrap">
+    <div class="offer-box reveal">
+      <span class="offer-tag">Precio de lanzamiento</span>
+      <div class="price-row">
+        <span class="price-old">$24.900</span>
+        <span class="price-new">$12.900</span>
+      </div>
+      <p class="price-sub">Pago único · Acceso inmediato</p>
+      <div class="urgency"><span class="blink"></span> Precio especial de lanzamiento por tiempo limitado</div>
+      <a href="#" class="btn btn-gold" style="width:100%;">Comprar ahora</a>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIA -->
+<section class="section section-beige">
+  <div class="wrap">
+    <div class="guarantee reveal">
+      <div class="shield">🛡️</div>
+      <p>Si la guía no cumple tus expectativas, contás con una <strong>garantía de satisfacción durante los primeros 7 días.</strong> Sin vueltas.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Comé Saludable</div>
+        <p style="font-size:14px;max-width:260px;">Un sistema simple para organizar tu alimentación semanal, sin dietas estrictas.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <a href="#">Instagram</a>
+          <a href="#">WhatsApp</a>
+          <a href="#">Email</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Política de privacidad</a>
+          <a href="#">Términos y condiciones</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Comé Saludable sin Perder Tiempo. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <span class="price">$12.900</span>
+  <a href="#oferta" class="btn btn-gold">Comprar ahora</a>
+</div>
+
+<script>
+  // scroll reveal
+  const items = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  },{threshold:0.15});
+  items.forEach(i=>obs.observe(i));
+
+  // faq accordion
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.addEventListener('click', ()=>{
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+      if(!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>
